@@ -1,4 +1,6 @@
-﻿using CodeSolveNetwork.Services.Logger;
+﻿using CodeSolveNetwork.Api.Settings;
+using CodeSolveNetwork.Context.Seeder;
+using CodeSolveNetwork.Services.Logger;
 using CodeSolveNetwork.Services.Settings;
 
 namespace CodeSolveNetwork.Api
@@ -9,9 +11,11 @@ namespace CodeSolveNetwork.Api
         {
             service
                 .AddMainSettings()
-                .AddSwaggerSettings()
                 .AddLogSettings()
-                .AddAppLogger();
+                .AddSwaggerSettings()
+                .AddAppLogger()
+                .AddDbSeeder()
+                .AddApiSpecialSettings();
 
             return service;
         }

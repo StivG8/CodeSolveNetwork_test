@@ -27,6 +27,7 @@
     <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Logger\CodeSolveNetwork.Services.Logger.csproj" />
     <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Settings\CodeSolveNetwork.Services.Settings.csproj" />
     <ProjectReference Include="..\..\..\Shared\CodeSolveNetwork.Common\CodeSolveNetwork.Common.csproj" />
+    <ProjectReference Include="..\CodeSolveNetwork.Api.Settings\CodeSolveNetwork.Api.Settings.csproj" />
   </ItemGroup>
 
 </Project>

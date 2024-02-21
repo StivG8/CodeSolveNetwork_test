@@ -1,15 +1,31 @@
+using CodeSolveNetwork.Api.Settings;
+using CodeSolveNetwork.Common.Extensions;
+using CodeSolveNetwork.Services.Settings.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Reflection;
 
 namespace CodeSolveNetwork.Api.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        [BindProperty]
+        public bool OpenApiEnabled => settings.Enabled;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        [BindProperty]
+        public string Version => Assembly.GetExecutingAssembly().GetAssemblyVersion();
+
+        [BindProperty]
+        public string HelloMessage => apiSettings.HelloMessage;
+
+
+        private readonly SwaggerSettings settings;
+        private readonly ApiSpecialSettings apiSettings;
+
+        public IndexModel(SwaggerSettings settings, ApiSpecialSettings apiSettings)
         {
-            _logger = logger;
+            this.settings = settings;
+            this.apiSettings = apiSettings;
         }
 
         public void OnGet()
