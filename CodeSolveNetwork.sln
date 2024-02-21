@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Context", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrations", "Migrations", "{B418F182-A2A7-4F2E-AF42-275E14FB76CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Context.Migrations.PgSql", "Data\CodeSolveNetwork.Context.Migrations\CodeSolveNetwork.Context.Migrations.PgSql\CodeSolveNetwork.Context.Migrations.PgSql.csproj", "{4F29C715-AC81-4599-A723-332FB9089A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Context.Migrations.PgSql", "Data\CodeSolveNetwork.Context.Migrations\CodeSolveNetwork.Context.Migrations.PgSql\CodeSolveNetwork.Context.Migrations.PgSql.csproj", "{4F29C715-AC81-4599-A723-332FB9089A94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Context.Seeder", "Data\CodeSolveNetwork.Context.Seeder\CodeSolveNetwork.Context.Seeder.csproj", "{CFE4649D-1CB4-4061-AB13-D36020373B5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{4F29C715-AC81-4599-A723-332FB9089A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F29C715-AC81-4599-A723-332FB9089A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F29C715-AC81-4599-A723-332FB9089A94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFE4649D-1CB4-4061-AB13-D36020373B5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE4649D-1CB4-4061-AB13-D36020373B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE4649D-1CB4-4061-AB13-D36020373B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE4649D-1CB4-4061-AB13-D36020373B5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{31D79F56-0504-4C7B-8185-FA631EDFDEC7} = {43F9F2D5-FA61-4569-B978-896F2413FCE2}
 		{B418F182-A2A7-4F2E-AF42-275E14FB76CF} = {43F9F2D5-FA61-4569-B978-896F2413FCE2}
 		{4F29C715-AC81-4599-A723-332FB9089A94} = {B418F182-A2A7-4F2E-AF42-275E14FB76CF}
+		{CFE4649D-1CB4-4061-AB13-D36020373B5E} = {43F9F2D5-FA61-4569-B978-896F2413FCE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E371A67-DEF0-4462-9279-2FA36FC8C195}

@@ -5,6 +5,7 @@ using CodeSolveNetwork.Services.Logger.Logger;
 using CodeSolveNetwork.Services.Settings.Settings;
 using CodeSolveNetwork.Context;
 using CodeSolveNetwork.Context.Setup;
+using CodeSolveNetwork.Context.Seeder.Seeds;
 
 var mainSettings = Settings.Load<MainSettings>("Main");
 var logSettings = Settings.Load<LogSettings>("Log");
@@ -51,6 +52,8 @@ app.UseAppSwagger();
 app.UseAppControllerAndViews();
 
 DbInitializer.Execute(app.Services);
+
+DbSeeder.Execute(app.Services);
 
 logger.Information("The CodeSolveNetwork.API has started");
 

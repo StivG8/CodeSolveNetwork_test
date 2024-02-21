@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\CodeSolveNetwork.Context.Migrations\CodeSolveNetwork.Context.Migrations.PgSql\CodeSolveNetwork.Context.Migrations.PgSql.csproj" />
+    <ProjectReference Include="..\..\..\Data\CodeSolveNetwork.Context.Seeder\CodeSolveNetwork.Context.Seeder.csproj" />
     <ProjectReference Include="..\..\..\Data\CodeSolveNetwork.Context\CodeSolveNetwork.Context.csproj" />
     <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Logger\CodeSolveNetwork.Services.Logger.csproj" />
     <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Settings\CodeSolveNetwork.Services.Settings.csproj" />
