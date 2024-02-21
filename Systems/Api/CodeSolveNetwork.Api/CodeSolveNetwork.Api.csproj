@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog" Version="3.1.1" />
+    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+	<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.1.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.12" />
+	<PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\CodeSolveNetwork.Context.Migrations\CodeSolveNetwork.Context.Migrations.PgSql\CodeSolveNetwork.Context.Migrations.PgSql.csproj" />
+    <ProjectReference Include="..\..\..\Data\CodeSolveNetwork.Context\CodeSolveNetwork.Context.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Logger\CodeSolveNetwork.Services.Logger.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Settings\CodeSolveNetwork.Services.Settings.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CodeSolveNetwork.Common\CodeSolveNetwork.Common.csproj" />
+  </ItemGroup>
+
+</Project>
