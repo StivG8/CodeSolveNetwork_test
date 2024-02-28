@@ -15,7 +15,22 @@ namespace CodeSolveNetwork.Context.Seeder.Seeds.Demo
                 Category = new TaskCategory()
                 {
                     Uid = Guid.NewGuid(),
-                    Name = "Loops"
+                    Name = "Loops",
+                },
+                Language=new ProgrammingLanguage()
+                {
+                    Name="C#",
+                },
+                Solutions=new List<Solution>()
+                {
+                    new Solution()
+                    {
+                        Code="some code",
+                        Description="some description",
+                        Dislikes=0,
+                        Likes=0,
+                        IsPublished=false,
+                    }
                 }
             },
         };

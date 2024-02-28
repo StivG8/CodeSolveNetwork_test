@@ -35,7 +35,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Context.Mi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Context.Seeder", "Data\CodeSolveNetwork.Context.Seeder\CodeSolveNetwork.Context.Seeder.csproj", "{CFE4649D-1CB4-4061-AB13-D36020373B5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Api.Settings", "Systems\Api\CodeSolveNetwork.Api.Settings\CodeSolveNetwork.Api.Settings.csproj", "{5FF75768-6755-4CCB-A29D-2D5C57E68CE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Api.Settings", "Systems\Api\CodeSolveNetwork.Api.Settings\CodeSolveNetwork.Api.Settings.csproj", "{5FF75768-6755-4CCB-A29D-2D5C57E68CE5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Services.ProgrammingLanguages", "Services\CodeSolveNetwork.Services.ProgrammingLanguages\CodeSolveNetwork.Services.ProgrammingLanguages.csproj", "{4EA28268-A72A-4ABE-9CE3-FF3550DEF6FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_docker", "_docker", "{EAEE90B1-F427-4E2D-82F6-7B6A1B087D78}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.override.yml = docker-compose.override.yml
+		docker-compose.yml = docker-compose.yml
+		env.api = env.api
+		env.worker = env.worker
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Services.Actions", "Services\CodeSolveNetwork.Services.Actions\CodeSolveNetwork.Services.Actions.csproj", "{21C3CAAE-7BEE-44B1-A29E-70147480CA6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Services.RabbitMq", "Services\CodeSolveNetwork.Services.RabbitMq\CodeSolveNetwork.Services.RabbitMq.csproj", "{148C09C5-DB0E-4570-ABCF-F8003DD29C95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +97,18 @@ Global
 		{5FF75768-6755-4CCB-A29D-2D5C57E68CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FF75768-6755-4CCB-A29D-2D5C57E68CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FF75768-6755-4CCB-A29D-2D5C57E68CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EA28268-A72A-4ABE-9CE3-FF3550DEF6FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EA28268-A72A-4ABE-9CE3-FF3550DEF6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EA28268-A72A-4ABE-9CE3-FF3550DEF6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EA28268-A72A-4ABE-9CE3-FF3550DEF6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21C3CAAE-7BEE-44B1-A29E-70147480CA6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C3CAAE-7BEE-44B1-A29E-70147480CA6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C3CAAE-7BEE-44B1-A29E-70147480CA6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C3CAAE-7BEE-44B1-A29E-70147480CA6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{148C09C5-DB0E-4570-ABCF-F8003DD29C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{148C09C5-DB0E-4570-ABCF-F8003DD29C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{148C09C5-DB0E-4570-ABCF-F8003DD29C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{148C09C5-DB0E-4570-ABCF-F8003DD29C95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +127,9 @@ Global
 		{4F29C715-AC81-4599-A723-332FB9089A94} = {B418F182-A2A7-4F2E-AF42-275E14FB76CF}
 		{CFE4649D-1CB4-4061-AB13-D36020373B5E} = {43F9F2D5-FA61-4569-B978-896F2413FCE2}
 		{5FF75768-6755-4CCB-A29D-2D5C57E68CE5} = {B9602B9B-636E-4579-9C31-2A2FF418C258}
+		{4EA28268-A72A-4ABE-9CE3-FF3550DEF6FC} = {00CE06E4-53B8-4066-A654-AEF7711CA173}
+		{21C3CAAE-7BEE-44B1-A29E-70147480CA6D} = {00CE06E4-53B8-4066-A654-AEF7711CA173}
+		{148C09C5-DB0E-4570-ABCF-F8003DD29C95} = {00CE06E4-53B8-4066-A654-AEF7711CA173}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E371A67-DEF0-4462-9279-2FA36FC8C195}

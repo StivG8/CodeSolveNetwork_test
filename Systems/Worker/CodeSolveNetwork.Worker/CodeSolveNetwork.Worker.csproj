@@ -5,6 +5,22 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\CodeSolveNetwork.Context\CodeSolveNetwork.Context.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Actions\CodeSolveNetwork.Services.Actions.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Logger\CodeSolveNetwork.Services.Logger.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.RabbitMq\CodeSolveNetwork.Services.RabbitMq.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Settings\CodeSolveNetwork.Services.Settings.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CodeSolveNetwork.Common\CodeSolveNetwork.Common.csproj" />
+  </ItemGroup>
 
 </Project>

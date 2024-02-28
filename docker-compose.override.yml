@@ -1,0 +1,55 @@
+version: '3.4'
+
+services:
+  codesolvenetwork_postgresql:
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=9989789
+    ports:
+      - "45432:5432"
+    networks:
+      - shared_codesolvenetwork_net
+    volumes:      
+      - ~/.docker-conf/postgresql/data/:/var/lib/postgresql/data
+
+  codesolvenetwork_rabbitmq:
+    ports:
+      - "5672:5672"
+      - "5673:5673"
+      - "15672:15672" 
+    networks:
+      - shared_codesolvenetwork_net
+    volumes:      
+      - ./rabbitmq:/var/lib/rabbitmq
+    
+
+  codesolvenetwork_api:
+    ports:
+      - "10000:8080"
+    networks:
+      - shared_codesolvenetwork_net
+    env_file:
+      - env.api
+
+  codesolvenetwork_worker_1:
+    networks:
+      - shared_codesolvenetwork_net
+    ports:
+      - "10001:8080"
+    env_file:
+      - env.worker
+
+  codesolvenetwork_worker_2:
+    networks:
+      - shared_codesolvenetwork_net
+    ports:
+      - "10002:8080"
+    env_file:
+      - env.worker
+
+
+networks:
+  shared_codesolvenetwork_net:
+    name: code_solvenetwork
+    driver: bridge

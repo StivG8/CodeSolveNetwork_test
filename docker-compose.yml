@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+
+  codesolvenetwork_postgresql:
+    image: postgres:14.1
+    
+  codesolvenetwork_rabbitmq:
+    image: rabbitmq:management
+            
+  codesolvenetwork_api:
+    image: ${DOCKER_REGISTRY-}codesolvenetworkapi
+    build:
+      context: .
+      dockerfile: Systems/Api/CodeSolveNetwork.Api/Dockerfile
+    depends_on:
+      - codesolvenetwork_postgresql
+      - codesolvenetwork_rabbitmq
+
+  codesolvenetwork_worker_1:
+    image: ${DOCKER_REGISTRY-}codesolvenetworkworker
+    build:
+      context: .
+      dockerfile: Systems/Worker/CodeSolveNetwork.Worker/Dockerfile
+    depends_on:
+      - codesolvenetwork_postgresql
+      - codesolvenetwork_rabbitmq
+      - codesolvenetwork_api
+
+  codesolvenetwork_worker_2:
+    image: ${DOCKER_REGISTRY-}codesolvenetworkworker
+    build:
+      context: .
+      dockerfile: Systems/Worker/CodeSolveNetwork.Worker/Dockerfile
+    depends_on:
+      - codesolvenetwork_postgresql
+      - codesolvenetwork_rabbitmq
+      - codesolvenetwork_api 
