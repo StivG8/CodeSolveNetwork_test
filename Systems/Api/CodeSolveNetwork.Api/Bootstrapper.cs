@@ -5,6 +5,7 @@ using CodeSolveNetwork.Services.Logger;
 using CodeSolveNetwork.Services.ProgrammingLanguages;
 using CodeSolveNetwork.Services.RabbitMq;
 using CodeSolveNetwork.Services.Settings;
+using CodeSolveNetwork.Services.UserAccount;
 
 namespace CodeSolveNetwork.Api
 {
@@ -16,12 +17,14 @@ namespace CodeSolveNetwork.Api
                 .AddMainSettings()
                 .AddLogSettings()
                 .AddSwaggerSettings()
+                .AddIdentitySettings()
                 .AddAppLogger()
                 .AddDbSeeder()
                 .AddApiSpecialSettings()
                 .AddProgrammingLanguageService()
                 .AddRabbitMq()
-                .AddActions();
+                .AddActions()
+                .AddUserAccountService();
 
             return service;
         }

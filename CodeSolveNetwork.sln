@@ -44,12 +44,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_docker", "_docker", "{EAEE
 		docker-compose.override.yml = docker-compose.override.yml
 		docker-compose.yml = docker-compose.yml
 		env.api = env.api
+		env.identity = env.identity
 		env.worker = env.worker
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Services.Actions", "Services\CodeSolveNetwork.Services.Actions\CodeSolveNetwork.Services.Actions.csproj", "{21C3CAAE-7BEE-44B1-A29E-70147480CA6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Services.Actions", "Services\CodeSolveNetwork.Services.Actions\CodeSolveNetwork.Services.Actions.csproj", "{21C3CAAE-7BEE-44B1-A29E-70147480CA6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Services.RabbitMq", "Services\CodeSolveNetwork.Services.RabbitMq\CodeSolveNetwork.Services.RabbitMq.csproj", "{148C09C5-DB0E-4570-ABCF-F8003DD29C95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Services.RabbitMq", "Services\CodeSolveNetwork.Services.RabbitMq\CodeSolveNetwork.Services.RabbitMq.csproj", "{148C09C5-DB0E-4570-ABCF-F8003DD29C95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{31E3915A-728B-4E54-B462-7FF1E8E85AE5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Identity", "Systems\Identity\CodeSolveNetwork.Identity\CodeSolveNetwork.Identity.csproj", "{AAB1D48A-1F5E-40E2-B750-374BB9B793B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Services.UserAccount", "Services\CodeSolveNetwork.Services.UserAccount\CodeSolveNetwork.Services.UserAccount.csproj", "{A9F95B50-431D-47FA-B8EB-924002E6B31E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +116,14 @@ Global
 		{148C09C5-DB0E-4570-ABCF-F8003DD29C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{148C09C5-DB0E-4570-ABCF-F8003DD29C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{148C09C5-DB0E-4570-ABCF-F8003DD29C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAB1D48A-1F5E-40E2-B750-374BB9B793B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAB1D48A-1F5E-40E2-B750-374BB9B793B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAB1D48A-1F5E-40E2-B750-374BB9B793B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAB1D48A-1F5E-40E2-B750-374BB9B793B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9F95B50-431D-47FA-B8EB-924002E6B31E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9F95B50-431D-47FA-B8EB-924002E6B31E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9F95B50-431D-47FA-B8EB-924002E6B31E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9F95B50-431D-47FA-B8EB-924002E6B31E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +145,9 @@ Global
 		{4EA28268-A72A-4ABE-9CE3-FF3550DEF6FC} = {00CE06E4-53B8-4066-A654-AEF7711CA173}
 		{21C3CAAE-7BEE-44B1-A29E-70147480CA6D} = {00CE06E4-53B8-4066-A654-AEF7711CA173}
 		{148C09C5-DB0E-4570-ABCF-F8003DD29C95} = {00CE06E4-53B8-4066-A654-AEF7711CA173}
+		{31E3915A-728B-4E54-B462-7FF1E8E85AE5} = {6B91868A-ED13-48E7-900E-18B477348963}
+		{AAB1D48A-1F5E-40E2-B750-374BB9B793B4} = {31E3915A-728B-4E54-B462-7FF1E8E85AE5}
+		{A9F95B50-431D-47FA-B8EB-924002E6B31E} = {00CE06E4-53B8-4066-A654-AEF7711CA173}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E371A67-DEF0-4462-9279-2FA36FC8C195}

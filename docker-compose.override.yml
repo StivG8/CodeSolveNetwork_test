@@ -32,11 +32,20 @@ services:
     env_file:
       - env.api
 
+  codesolvenetwork_identity:
+    ports:
+      - "10001:8080"
+    networks:
+      - shared_codesolvenetwork_net
+    env_file:
+      - env.identity
+
+
   codesolvenetwork_worker_1:
     networks:
       - shared_codesolvenetwork_net
     ports:
-      - "10001:8080"
+      - "10002:8080"
     env_file:
       - env.worker
 
@@ -44,7 +53,7 @@ services:
     networks:
       - shared_codesolvenetwork_net
     ports:
-      - "10002:8080"
+      - "10003:8080"
     env_file:
       - env.worker
 

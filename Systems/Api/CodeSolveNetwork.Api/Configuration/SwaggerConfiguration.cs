@@ -1,4 +1,6 @@
 ﻿using Asp.Versioning.ApiExplorer;
+using CodeSolveNetwork.Common.Security;
+using CodeSolveNetwork.Services.Settings;
 using CodeSolveNetwork.Services.Settings.Settings;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
@@ -23,7 +25,8 @@ namespace CodeSolveNetwork.Api.Configuration
         /// <param name="swaggerSettings"></param>
         public static IServiceCollection AddAppSwagger(this IServiceCollection services,
             MainSettings mainSettings,
-            SwaggerSettings swaggerSettings
+            SwaggerSettings swaggerSettings,
+            IdentitySettings identitySettings
             )
         {
             if (!swaggerSettings.Enabled)
@@ -66,24 +69,24 @@ namespace CodeSolveNetwork.Api.Configuration
                     In = ParameterLocation.Header,
                     Flows = new OpenApiOAuthFlows
                     {
-                        //ClientCredentials = new OpenApiOAuthFlow
-                        //{
-                        //    TokenUrl = new Uri($"{identitySettings.Url}/connect/token"),
-                        //    Scopes = new Dictionary<string, string>
-                        //    {
-                        //        { AppScopes.BooksRead, "Read" },
-                        //        { AppScopes.BooksWrite, "Write" }
-                        //    }
-                        //},
+                        ClientCredentials = new OpenApiOAuthFlow
+                        {
+                            TokenUrl = new Uri($"{identitySettings.Url}/connect/token"),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { AppScopes.ProgrammingLanguagesRead, "Read" },
+                                { AppScopes.ProgrammingLanguagesWrite, "Write" }
+                            }
+                        },
 
                         Password = new OpenApiOAuthFlow
                         {
                             TokenUrl = new Uri($"{mainSettings.PublicUrl}/connect/token"),
-                            //Scopes = new Dictionary<string, string>
-                            //{
-                            //    { AppScopes.BooksRead, "Read" },
-                            //    { AppScopes.BooksWrite, "Write" }
-                            //}
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { AppScopes.ProgrammingLanguagesRead, "Read" },
+                                { AppScopes.ProgrammingLanguagesWrite, "Write" }
+                            }
                         }
                     }
                 });

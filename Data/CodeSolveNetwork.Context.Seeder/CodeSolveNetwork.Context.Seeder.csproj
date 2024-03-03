@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Services\CodeSolveNetwork.Services.UserAccount\CodeSolveNetwork.Services.UserAccount.csproj" />
     <ProjectReference Include="..\..\Shared\CodeSolveNetwork.Common\CodeSolveNetwork.Common.csproj" />
     <ProjectReference Include="..\CodeSolveNetwork.Context.Entities\CodeSolveNetwork.Context.Entities.csproj" />
     <ProjectReference Include="..\CodeSolveNetwork.Context\CodeSolveNetwork.Context.csproj" />

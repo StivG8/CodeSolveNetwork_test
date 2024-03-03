@@ -1,10 +1,12 @@
-﻿using CodeSolveNetwork.Context.Context.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using CodeSolveNetwork.Context.Context.Configuration;
 using CodeSolveNetwork.Context.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace CodeSolveNetwork.Context.Context
 {
-    public class MainDbContext : DbContext
+    public class MainDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public DbSet<Entities.Task> Tasks { get; set; }
         public DbSet<TaskCategory> TaskCategories { get; set; }
@@ -23,6 +25,7 @@ namespace CodeSolveNetwork.Context.Context
             modelBuilder.ConfigureSubscriptions();
             modelBuilder.ConfigureTaskCategories();
             modelBuilder.ConfigureTasks();
+            modelBuilder.ConfigureUsers();
         }
     }
 }

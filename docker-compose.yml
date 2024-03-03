@@ -17,6 +17,15 @@ services:
       - codesolvenetwork_postgresql
       - codesolvenetwork_rabbitmq
 
+  codesolvenetwork_identity:
+    image: ${DOCKER_REGISTRY-}codesolvenetworkidentity
+    build:
+      context: .
+      dockerfile: Systems/Identity/CodeSolveNetwork.Identity/Dockerfile
+    depends_on:
+      - codesolvenetwork_postgresql
+      - codesolvenetwork_api
+
   codesolvenetwork_worker_1:
     image: ${DOCKER_REGISTRY-}codesolvenetworkworker
     build:

@@ -28,5 +28,13 @@ namespace CodeSolveNetwork.Services.Settings
 
             return services;
         }
+
+        public static IServiceCollection AddIdentitySettings(this IServiceCollection services, IConfiguration configuration = null)
+        {
+            var settings = Common.Settings.Settings.Load<IdentitySettings>("Identity", configuration);
+            services.AddSingleton(settings);
+
+            return services;
+        }
     }
 }

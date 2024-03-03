@@ -14,6 +14,7 @@ COPY ["Data/CodeSolveNetwork.Context/CodeSolveNetwork.Context.csproj", "Data/Cod
 COPY ["Shared/CodeSolveNetwork.Common/CodeSolveNetwork.Common.csproj", "Shared/CodeSolveNetwork.Common/"]
 COPY ["Data/CodeSolveNetwork.Context.Entities/CodeSolveNetwork.Context.Entities.csproj", "Data/CodeSolveNetwork.Context.Entities/"]
 COPY ["Data/CodeSolveNetwork.Context.Seeder/CodeSolveNetwork.Context.Seeder.csproj", "Data/CodeSolveNetwork.Context.Seeder/"]
+COPY ["Services/CodeSolveNetwork.Services.UserAccount/CodeSolveNetwork.Services.UserAccount.csproj", "Services/CodeSolveNetwork.Services.UserAccount/"]
 COPY ["Services/CodeSolveNetwork.Services.Actions/CodeSolveNetwork.Services.Actions.csproj", "Services/CodeSolveNetwork.Services.Actions/"]
 COPY ["Services/CodeSolveNetwork.Services.RabbitMq/CodeSolveNetwork.Services.RabbitMq.csproj", "Services/CodeSolveNetwork.Services.RabbitMq/"]
 COPY ["Services/CodeSolveNetwork.Services.Logger/CodeSolveNetwork.Services.Logger.csproj", "Services/CodeSolveNetwork.Services.Logger/"]
