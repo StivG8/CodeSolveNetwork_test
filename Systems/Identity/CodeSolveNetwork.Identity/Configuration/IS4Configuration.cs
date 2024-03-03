@@ -48,5 +48,4 @@ namespace CodeSolveNetwork.Identity.Configuration
         }
     }
 
-
 }
