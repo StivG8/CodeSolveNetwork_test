@@ -1,0 +1,59 @@
+﻿@using CodeSolveNetwork.Web.Pages.ProgrammingLanguages.Models
+@using CodeSolveNetwork.Web.Pages.ProgrammingLanguages.Services
+@inherits MudComponentBase
+
+@inject IProgrammingLanguageService ProgrammingLanguageService
+
+<MudDialog>
+    <DialogContent>
+        <MudForm Model="Model" @ref="form">
+            <MudGrid>
+                <MudItem xs="12" sm="6">
+                    <MudTextField Label="Name" @bind-Value="Model.Name"
+                                  For="@(() => Model.Name)"
+                                  Required="true"
+                                  RequiredError="Name is required!">
+                    </MudTextField>
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="MudBlazor.Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; } = default!;
+
+    [Parameter] public Guid? programmingLanguageid { get; set; }
+
+    [Parameter] public ProgrammingLanguageModel Model { get; set; } = new();
+
+    private MudForm form = default!;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        if (programmingLanguageid != null)
+        {
+            var programmingLanguage = await ProgrammingLanguageService.GetProgrammingLanguage(programmingLanguageid.Value);
+
+            Model.Id = programmingLanguage.Id;
+            Model.Name = programmingLanguage.Name;
+        }
+    }
+
+    async Task Submit()
+    {
+        await form.Validate();
+        if (form.IsValid)
+        {
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+    }
+
+    void Cancel() => MudDialog.Cancel();
+}
