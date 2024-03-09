@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\ConfirmationDialog.razor" />
     <Content Remove="Pages\ProgrammingLanguages\ProgrammingLanguageDialog.razor" />
   </ItemGroup>
 
@@ -22,11 +23,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\ConfirmationDialog.razor" />
     <_ContentIncludedByDefault Remove="Pages\ProgrammingLanguages\ProgrammingLanguageDialog.razor" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Components\ConfirmationDialog.razor" />
     <None Include="Pages\ProgrammingLanguages\ProgrammingLanguageDialog.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\ConfirmationDialog.razor" />
   </ItemGroup>
 
 </Project>

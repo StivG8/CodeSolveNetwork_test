@@ -1,8 +1,8 @@
 ﻿@page "/programmingLanguages"
+@using CodeSolveNetwork.Web.Components
 @using CodeSolveNetwork.Web.Pages.ProgrammingLanguages.Services
 @using CodeSolveNetwork.Web.Pages.ProgrammingLanguages.Models
-@* @using CodeSolveNetwork.Web.Components
-@using Microsoft.AspNetCore.Authorization *@
+@* @using Microsoft.AspNetCore.Authorization *@
 @inject IProgrammingLanguageService ProgrammingLanguageService
 @inject ISnackbar Snackbar
 @inject IDialogService DialogService
@@ -95,42 +95,42 @@
     
     private async Task EditProgrammingLanguage(Guid programmingLanguageid)
     {
-        // var parameters = new DialogParameters();
-        // parameters.Add("ProgrammingLanguageId", programmingLanguageid);
+        var parameters = new DialogParameters();
+        parameters.Add("ProgrammingLanguageId", programmingLanguageid);
 
-        // var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Large, FullWidth = true };
-        // var dialog = DialogService.Show<ProgrammingLanguageDialog>("Edit programming language", parameters, options);
-        // var result = await dialog.Result;
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Large, FullWidth = true };
+        var dialog = DialogService.Show<ProgrammingLanguageDialog>("Edit programming language", parameters, options);
+        var result = await dialog.Result;
 
-        // if (result.Canceled)
-        //     return;
+        if (result.Canceled)
+            return;
 
-        // var model = ((ProgrammingLanguageDialog)dialog.Dialog).Model;
-        // var updateModel = new UpdateProgrammingLanguageModel()
-        // {
-        //     Name = model.Name
-        // };
+        var model = ((ProgrammingLanguageDialog)dialog.Dialog).Model;
+        var updateModel = new UpdateProgrammingLanguageModel()
+        {
+            Name = model.Name
+        };
         
-        // await ProgrammingLanguageService.EditProgrammingLanguage(programmingLanguageid, updateModel);
-        // await ReloadData();
+        await ProgrammingLanguageService.EditProgrammingLanguage(programmingLanguageid, updateModel);
+        await ReloadData();
     }
 
     private async Task DeleteProgrammingLanguage(Guid programmingLanguageid)
     {
-        // var parameters = new DialogParameters();
-        // parameters.Add("ContentText", "Do you really want to delete this programming language? This process cannot be undone.");
-        // parameters.Add("ButtonText", "Delete");
-        // parameters.Add("Color", Color.Error);
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", "Do you really want to delete this programming language? This process cannot be undone.");
+        parameters.Add("ButtonText", "Delete");
+        parameters.Add("Color", Color.Error);
 
-        // var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
 
-        // var dialog = await DialogService.ShowAsync<ConfirmationDialog>("Delete book", parameters, options);
-        // var result = await dialog.Result;
+        var dialog = await DialogService.ShowAsync<ConfirmationDialog>("Delete book", parameters, options);
+        var result = await dialog.Result;
 
-        // if (result.Canceled)
-        //     return;
+        if (result.Canceled)
+            return;
         
-        // await ProgrammingLanguageService.DeleteProgrammingLanguage(programmingLanguageid);
-        // await ReloadData();
+        await ProgrammingLanguageService.DeleteProgrammingLanguage(programmingLanguageid);
+        await ReloadData();
     }
 }
