@@ -7,33 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Components\ConfirmationDialog.razor" />
-    <Content Remove="Pages\ProgrammingLanguages\ProgrammingLanguageDialog.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
     <PackageReference Include="MudBlazor" Version="6.11.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.1" PrivateAssets="all" />  
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\ProgrammingLanguages\ProgrammingLanguageDialog.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Components\ConfirmationDialog.razor" />
-    <_ContentIncludedByDefault Remove="Pages\ProgrammingLanguages\ProgrammingLanguageDialog.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Components\ConfirmationDialog.razor" />
-    <None Include="Pages\ProgrammingLanguages\ProgrammingLanguageDialog.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Components\ConfirmationDialog.razor" />
   </ItemGroup>
 
 </Project>
