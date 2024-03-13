@@ -81,7 +81,7 @@ namespace CodeSolveNetwork.Api.Configuration
 
                         Password = new OpenApiOAuthFlow
                         {
-                            TokenUrl = new Uri($"{mainSettings.PublicUrl}/connect/token"),
+                            TokenUrl = new Uri($"{identitySettings.Url}/connect/token"),
                             Scopes = new Dictionary<string, string>
                             {
                                 { AppScopes.ProgrammingLanguagesRead, "Read" },
