@@ -9,6 +9,7 @@ namespace CodeSolveNetwork.Context.Entities
 {
     public class Solution : BaseEntity
     {
+        public int? TaskId { get; set; }
         public virtual Task Task { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }

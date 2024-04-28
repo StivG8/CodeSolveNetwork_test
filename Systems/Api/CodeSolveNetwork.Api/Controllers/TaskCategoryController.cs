@@ -1,9 +1,6 @@
 ﻿using Asp.Versioning;
-using CodeSolveNetwork.Common.Security;
 using CodeSolveNetwork.Services.Logger.Logger;
-using CodeSolveNetwork.Services.ProgrammingLanguages.ProgrammingLanguages;
-using CodeSolveNetwork.Services.ProgrammingLanguages.ProgrammingLanguages.Models;
-using Microsoft.AspNetCore.Authorization;
+using CodeSolveNetwork.Services.TaskCategories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodeSolveNetwork.Api.Controllers
@@ -13,22 +10,21 @@ namespace CodeSolveNetwork.Api.Controllers
     [ApiVersion("1.0")]
     [ApiExplorerSettings(GroupName = "Product")]
     [Route("v{version:apiVersion}/[controller]")]
-    public class ProgrammingLanguageController : ControllerBase
+    public class TaskCategoryController : ControllerBase
     {
         private readonly IAppLogger logger;
-        private readonly IProgrammingLanguageService programmingLanguageService;
-
-        public ProgrammingLanguageController(IAppLogger logger, IProgrammingLanguageService programmingLanguageService)
+        private readonly ITaskCategoryService taskCategoryService;
+        public TaskCategoryController(IAppLogger logger, ITaskCategoryService taskCategoryService)
         {
             this.logger = logger;
-            this.programmingLanguageService = programmingLanguageService;
+            this.taskCategoryService = taskCategoryService;
         }
 
         [HttpGet("")]
         //[Authorize(AppScopes.ProgrammingLanguagesRead)]
-        public async Task<IEnumerable<ProgrammingLanguageModel>> GetAll()
+        public async Task<IEnumerable<TaskCategoryModel>> GetAll()
         {
-            var result = await programmingLanguageService.GetAll();
+            var result = await taskCategoryService.GetAll();
 
             return result;
         }
@@ -37,7 +33,7 @@ namespace CodeSolveNetwork.Api.Controllers
         //[Authorize(AppScopes.ProgrammingLanguagesRead)]
         public async Task<IActionResult> Get([FromRoute] Guid id)
         {
-            var result = await programmingLanguageService.GetById(id);
+            var result = await taskCategoryService.GetById(id);
 
             if (result == null)
                 return NotFound();
@@ -47,25 +43,25 @@ namespace CodeSolveNetwork.Api.Controllers
 
         [HttpPost("")]
         //[Authorize(AppScopes.ProgrammingLanguagesWrite)]
-        public async Task<ProgrammingLanguageModel> Create(CreateProgrammingLanguageModel request)
+        public async Task<TaskCategoryModel> Create(CreateTaskCategoryModel request)
         {
-            var result = await programmingLanguageService.Create(request);
+            var result = await taskCategoryService.Create(request);
 
             return result;
         }
 
         [HttpPut("{id:Guid}")]
         //[Authorize(AppScopes.ProgrammingLanguagesWrite)]
-        public async Task Update([FromRoute] Guid id, UpdateProgrammingLanguageModel request)
+        public async Task Update([FromRoute] Guid id, UpdateTaskCategoryModel request)
         {
-            await programmingLanguageService.Update(id, request);
+            await taskCategoryService.Update(id, request);
         }
 
         [HttpDelete("{id:Guid}")]
         //[Authorize(AppScopes.ProgrammingLanguagesWrite)]
         public async Task Delete([FromRoute] Guid id)
         {
-            await programmingLanguageService.Delete(id);
+            await taskCategoryService.Delete(id);
         }
     }
 }

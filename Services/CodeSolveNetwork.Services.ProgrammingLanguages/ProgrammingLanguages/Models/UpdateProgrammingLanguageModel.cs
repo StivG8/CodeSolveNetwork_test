@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using CodeSolveNetwork.Common.ValidationRules;
 using CodeSolveNetwork.Context.Context;
 using CodeSolveNetwork.Context.Entities;

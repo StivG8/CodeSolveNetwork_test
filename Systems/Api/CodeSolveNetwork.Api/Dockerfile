@@ -20,6 +20,9 @@ COPY ["Services/CodeSolveNetwork.Services.RabbitMq/CodeSolveNetwork.Services.Rab
 COPY ["Services/CodeSolveNetwork.Services.Logger/CodeSolveNetwork.Services.Logger.csproj", "Services/CodeSolveNetwork.Services.Logger/"]
 COPY ["Services/CodeSolveNetwork.Services.ProgrammingLanguages/CodeSolveNetwork.Services.ProgrammingLanguages.csproj", "Services/CodeSolveNetwork.Services.ProgrammingLanguages/"]
 COPY ["Services/CodeSolveNetwork.Services.Settings/CodeSolveNetwork.Services.Settings.csproj", "Services/CodeSolveNetwork.Services.Settings/"]
+COPY ["Services/CodeSolveNetwork.Services.Solutions/CodeSolveNetwork.Services.Solutions.csproj", "Services/CodeSolveNetwork.Services.Solutions/"]
+COPY ["Services/CodeSolveNetwork.Services.TaskCategories/CodeSolveNetwork.Services.TaskCategories.csproj", "Services/CodeSolveNetwork.Services.TaskCategories/"]
+COPY ["Services/CodeSolveNetwork.Services.Tasks/CodeSolveNetwork.Services.Tasks.csproj", "Services/CodeSolveNetwork.Services.Tasks/"]
 COPY ["Systems/Api/CodeSolveNetwork.Api.Settings/CodeSolveNetwork.Api.Settings.csproj", "Systems/Api/CodeSolveNetwork.Api.Settings/"]
 RUN dotnet restore "./Systems/Api/CodeSolveNetwork.Api/./CodeSolveNetwork.Api.csproj"
 COPY . .

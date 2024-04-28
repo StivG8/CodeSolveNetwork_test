@@ -8,7 +8,8 @@ namespace CodeSolveNetwork.Context.Context.Configuration
         public static void ConfigureSolutions(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Solution>().ToTable("solutions");
-            modelBuilder.Entity<Solution>().HasOne(x => x.Task).WithMany(x => x.Solutions);
+            modelBuilder.Entity<Solution>().HasOne(x => x.Task).WithMany(x => x.Solutions)
+                .HasForeignKey(x => x.TaskId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
