@@ -7,7 +7,7 @@ namespace CodeSolveNetwork.Worker.Configuration
     {
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
-            var assembly = Assembly.Load("NetSchool.Worker");
+            var assembly = Assembly.Load("CodeSolveNetwork.Worker");
             var versionNumber = assembly.GetName().Version;
 
             return Task.FromResult(HealthCheckResult.Healthy(description: $"Build {versionNumber}"));

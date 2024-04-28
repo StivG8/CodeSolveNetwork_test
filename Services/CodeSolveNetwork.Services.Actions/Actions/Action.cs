@@ -16,5 +16,9 @@ namespace CodeSolveNetwork.Services.Actions
         {
             await rabbitMq.PushAsync(QueueNames.PUBLICATE_PROGRAMMINGLANGUAGE, model);
         }
+        public async Task PublicateTask(PublicateTaskModel model)
+        {
+            await rabbitMq.PushAsync(QueueNames.PUBLICATE_TASK, model);
+        }
     }
 }

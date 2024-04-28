@@ -3,8 +3,8 @@ using CodeSolveNetwork.Common.Exceptions;
 using CodeSolveNetwork.Common.Validator;
 using CodeSolveNetwork.Context.Context;
 using CodeSolveNetwork.Context.Entities;
+using CodeSolveNetwork.Services.Actions;
 using Microsoft.EntityFrameworkCore;
-using System;
 using Task = CodeSolveNetwork.Context.Entities.Task;
 
 namespace CodeSolveNetwork.Services.Tasks
@@ -13,18 +13,21 @@ namespace CodeSolveNetwork.Services.Tasks
     {
         private readonly IDbContextFactory<MainDbContext> dbContextFactory;
         private readonly IMapper mapper;
+        private readonly IAction action;
         private readonly IModelValidator<CreateTaskModel> createTaskModelValidator;
         private readonly IModelValidator<UpdateTaskModel> updateTaskModelValidator;
 
         public TaskService(
             IDbContextFactory<MainDbContext> dbContextFactory,
             IMapper mapper,
+            IAction action,
             IModelValidator<CreateTaskModel> createTaskModelValidator,
             IModelValidator<UpdateTaskModel> updateTaskModelValidator
             )
         {
             this.dbContextFactory = dbContextFactory;
             this.mapper = mapper;
+            this.action = action;
             this.createTaskModelValidator = createTaskModelValidator;
             this.updateTaskModelValidator = updateTaskModelValidator;
         }
@@ -71,12 +74,12 @@ namespace CodeSolveNetwork.Services.Tasks
 
             await context.SaveChangesAsync();
 
-            //await action.PublicateBook(new PublicateBookModel()
-            //{
-            //    Id = book.Id,
-            //    Title = book.Title,
-            //    Description = book.Description
-            //});
+            await action.PublicateTask(new PublicateTaskModel()
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Description = task.Description
+            });
 
             return mapper.Map<TaskModel>(task);
         }

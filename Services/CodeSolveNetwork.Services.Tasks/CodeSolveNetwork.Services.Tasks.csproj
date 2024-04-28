@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\CodeSolveNetwork.Context\CodeSolveNetwork.Context.csproj" />
+    <ProjectReference Include="..\CodeSolveNetwork.Services.Actions\CodeSolveNetwork.Services.Actions.csproj" />
   </ItemGroup>
 
 </Project>

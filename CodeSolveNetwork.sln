@@ -62,11 +62,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{951B5706-5EF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Web", "Systems\Web\CodeSolveNetwork.Web\CodeSolveNetwork.Web.csproj", "{E2C9795F-DBC6-47C3-AE40-534C88C57760}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Services.Solutions", "Services\CodeSolveNetwork.Services.Solutions\CodeSolveNetwork.Services.Solutions.csproj", "{FBA7F4F9-BAD3-42C9-8498-6F55BB858ADF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Services.Solutions", "Services\CodeSolveNetwork.Services.Solutions\CodeSolveNetwork.Services.Solutions.csproj", "{FBA7F4F9-BAD3-42C9-8498-6F55BB858ADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Services.Tasks", "Services\CodeSolveNetwork.Services.Tasks\CodeSolveNetwork.Services.Tasks.csproj", "{49951DD3-BAA6-4784-B3FA-F4AC8D002B15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Services.Tasks", "Services\CodeSolveNetwork.Services.Tasks\CodeSolveNetwork.Services.Tasks.csproj", "{49951DD3-BAA6-4784-B3FA-F4AC8D002B15}"
+	ProjectSection(ProjectDependencies) = postProject
+		{21C3CAAE-7BEE-44B1-A29E-70147480CA6D} = {21C3CAAE-7BEE-44B1-A29E-70147480CA6D}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSolveNetwork.Services.TaskCategories", "Services\CodeSolveNetwork.Services.TaskCategories\CodeSolveNetwork.Services.TaskCategories.csproj", "{EDDECFAA-10F2-4E71-A2CB-8E8767B319E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSolveNetwork.Services.TaskCategories", "Services\CodeSolveNetwork.Services.TaskCategories\CodeSolveNetwork.Services.TaskCategories.csproj", "{EDDECFAA-10F2-4E71-A2CB-8E8767B319E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

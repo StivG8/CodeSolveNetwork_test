@@ -66,13 +66,6 @@ namespace CodeSolveNetwork.Services.Solutions
 
             await context.SaveChangesAsync();
 
-            //await action.PublicateBook(new PublicateBookModel()
-            //{
-            //    Id = book.Id,
-            //    Title = book.Title,
-            //    Description = book.Description
-            //});
-
             return mapper.Map<SolutionModel>(solution);
         }
 
