@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\CodeSolveNetwork.Context\CodeSolveNetwork.Context.csproj" />
     <ProjectReference Include="..\CodeSolveNetwork.Services.RabbitMq\CodeSolveNetwork.Services.RabbitMq.csproj" />
   </ItemGroup>
 
