@@ -5,6 +5,9 @@ using CodeSolveNetwork.Services.Logger;
 using CodeSolveNetwork.Services.ProgrammingLanguages;
 using CodeSolveNetwork.Services.RabbitMq;
 using CodeSolveNetwork.Services.Settings;
+using CodeSolveNetwork.Services.Solutions;
+using CodeSolveNetwork.Services.TaskCategories;
+using CodeSolveNetwork.Services.Tasks;
 using CodeSolveNetwork.Services.UserAccount;
 
 namespace CodeSolveNetwork.Api
@@ -22,6 +25,9 @@ namespace CodeSolveNetwork.Api
                 .AddDbSeeder()
                 .AddApiSpecialSettings()
                 .AddProgrammingLanguageService()
+                .AddSolutionService()
+                .AddTaskCategoryService()
+                .AddTaskService()
                 .AddRabbitMq()
                 .AddActions()
                 .AddUserAccountService();

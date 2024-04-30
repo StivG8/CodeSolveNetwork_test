@@ -33,6 +33,9 @@
     <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.ProgrammingLanguages\CodeSolveNetwork.Services.ProgrammingLanguages.csproj" />
     <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.RabbitMq\CodeSolveNetwork.Services.RabbitMq.csproj" />
     <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Settings\CodeSolveNetwork.Services.Settings.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Solutions\CodeSolveNetwork.Services.Solutions.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.TaskCategories\CodeSolveNetwork.Services.TaskCategories.csproj" />
+    <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.Tasks\CodeSolveNetwork.Services.Tasks.csproj" />
     <ProjectReference Include="..\..\..\Services\CodeSolveNetwork.Services.UserAccount\CodeSolveNetwork.Services.UserAccount.csproj" />
     <ProjectReference Include="..\..\..\Shared\CodeSolveNetwork.Common\CodeSolveNetwork.Common.csproj" />
     <ProjectReference Include="..\CodeSolveNetwork.Api.Settings\CodeSolveNetwork.Api.Settings.csproj" />

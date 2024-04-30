@@ -76,7 +76,7 @@ namespace CodeSolveNetwork.Context.Migrations.PgSql.Migrations
                     b.Property<int>("Likes")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TaskId")
+                    b.Property<int?>("TaskId")
                         .HasColumnType("integer");
 
                     b.Property<Guid>("Uid")
@@ -123,7 +123,7 @@ namespace CodeSolveNetwork.Context.Migrations.PgSql.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DateCreated")
@@ -133,7 +133,7 @@ namespace CodeSolveNetwork.Context.Migrations.PgSql.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("LanguageId")
+                    b.Property<int?>("ProgrammingLanguageId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
@@ -147,7 +147,7 @@ namespace CodeSolveNetwork.Context.Migrations.PgSql.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("LanguageId");
+                    b.HasIndex("ProgrammingLanguageId");
 
                     b.HasIndex("Uid")
                         .IsUnique();
@@ -385,8 +385,7 @@ namespace CodeSolveNetwork.Context.Migrations.PgSql.Migrations
                     b.HasOne("CodeSolveNetwork.Context.Entities.Task", "Task")
                         .WithMany("Solutions")
                         .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Task");
                 });
@@ -396,14 +395,12 @@ namespace CodeSolveNetwork.Context.Migrations.PgSql.Migrations
                     b.HasOne("CodeSolveNetwork.Context.Entities.TaskCategory", "Category")
                         .WithMany("Tasks")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("CodeSolveNetwork.Context.Entities.ProgrammingLanguage", "Language")
                         .WithMany("Tasks")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProgrammingLanguageId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Category");
 

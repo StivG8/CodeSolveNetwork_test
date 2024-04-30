@@ -28,6 +28,15 @@ namespace CodeSolveNetwork.Worker
 
                 logger.Information($"The book was publicated::: {data.Id} | {data.Name}");
             });
+
+            rabbitMq.Subscribe<PublicateTaskModel>(QueueNames.PUBLICATE_TASK, async data =>
+            {
+                logger.Information($"Starting publication of the book::: {data.Id}");
+
+                await Task.Delay(3000);
+
+                logger.Information($"The book was publicated::: {data.Id} | {data.Title} | {data.Description}");
+            });
         }
 
     }
