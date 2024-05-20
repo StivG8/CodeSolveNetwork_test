@@ -124,7 +124,7 @@
 
         var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
 
-        var dialog = await DialogService.ShowAsync<ConfirmationDialog>("Delete book", parameters, options);
+        var dialog = await DialogService.ShowAsync<ConfirmationDialog>("Delete programming language", parameters, options);
         var result = await dialog.Result;
 
         if (result.Canceled)
