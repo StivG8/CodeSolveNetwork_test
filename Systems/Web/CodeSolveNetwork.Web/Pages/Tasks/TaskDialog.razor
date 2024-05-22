@@ -1,5 +1,104 @@
-﻿<h3>TaskDialog</h3>
+﻿@using CodeSolveNetwork.Web.Pages.ProgrammingLanguages.Models
+@using CodeSolveNetwork.Web.Pages.ProgrammingLanguages.Services
+@using CodeSolveNetwork.Web.Pages.TaskCategories.Models
+@using CodeSolveNetwork.Web.Pages.TaskCategories.Services
+﻿@using CodeSolveNetwork.Web.Pages.Tasks.Models
+@using CodeSolveNetwork.Web.Pages.Tasks.Services
+@inherits MudComponentBase
 
-@code {
+@inject ITaskService TaskService
+@inject IProgrammingLanguageService ProgrammingLanguageService
+@inject ITaskCategoryService TaskCategoryService
 
+<MudDialog>
+    <DialogContent>
+        <MudForm Model="Model" @ref="form">
+            <MudGrid>
+                <MudItem xs="12" sm="6">
+                    <MudTextField Label="Title" @bind-Value="Model.Title"
+                                  For="@(() => Model.Title)"
+                                  Required="true"
+                                  RequiredError="Title is required!">
+                    </MudTextField>
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudSelect @ref="selectProgrammingLanguage" T="Guid" Label="ProgrammingLanguage" @bind-Value="Model.ProgrammingLanguageId" For="@(() => Model.ProgrammingLanguageId)">
+                        <MudSelectItem T="Guid" Value="Guid.Empty">&nbsp;</MudSelectItem>
+                        @foreach (var programmingLanguage in ProgrammingLanguages)
+                        {
+                            <MudSelectItem T="Guid" Value="@programmingLanguage.Id">@programmingLanguage.Name</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudSelect @ref="selectTaskCategory" T="Guid" Label="TaskCategory" @bind-Value="Model.CategoryId" For="@(() => Model.CategoryId)">
+                        <MudSelectItem T="Guid" Value="Guid.Empty">&nbsp;</MudSelectItem>
+                        @foreach (var taskCategory in TaskCategories)
+                        {
+                            <MudSelectItem T="Guid" Value="@taskCategory.Id">@taskCategory.Name</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField Label="Description"
+                                  Lines="5"
+                                  For="@(() => Model.Description)"
+                                  @bind-Value="Model.Description">
+                    </MudTextField>
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="MudBlazor.Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code 
+{
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; } = default!;
+
+    [Parameter] public Guid? TaskId { get; set; }
+
+    [Parameter] public TaskModel Model { get; set; } = new();
+
+    private MudForm form = default!;
+    
+    MudSelect<Guid> selectProgrammingLanguage = default!;
+    private List<ProgrammingLanguageModel> ProgrammingLanguages { get; set; } = new List<ProgrammingLanguageModel>();
+
+    MudSelect<Guid> selectTaskCategory = default!;
+    private List<TaskCategoryModel> TaskCategories { get; set; } = new List<TaskCategoryModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var programmingLanguages = await ProgrammingLanguageService.GetProgrammingLanguages();
+        ProgrammingLanguages.AddRange(programmingLanguages);
+
+        var taskCategories = await TaskCategoryService.GetTaskCategories();
+        TaskCategories.AddRange(taskCategories);
+        
+        if (TaskId != null)
+        {
+            var task = await TaskService.GetTask(TaskId.Value);
+
+            Model.Id = task.Id;
+            Model.ProgrammingLanguageId = task.ProgrammingLanguageId;
+            Model.CategoryId = task.CategoryId;
+            Model.Title = task.Title;
+            Model.Description = task.Description;
+        }
+    }
+
+    async Task Submit()
+    {
+        await form.Validate();
+        if (form.IsValid)
+        {
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+    }
+
+    void Cancel() => MudDialog.Cancel();
 }

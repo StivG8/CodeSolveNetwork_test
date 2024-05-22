@@ -1,5 +1,136 @@
-﻿<h3>TaskCategories</h3>
+﻿@page "/taskCategories"﻿
+@using CodeSolveNetwork.Web.Pages.TaskCategories.Services
+@using CodeSolveNetwork.Web.Pages.TaskCategories.Models
+@using CodeSolveNetwork.Web.Components
+@using Microsoft.AspNetCore.Authorization
+@inject ITaskCategoryService TaskCategoryService
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+
+@attribute [Authorize]
+@layout MainLayout
+
+<PageTitle>TaskCategories</PageTitle>
+
+<MudText Typo="Typo.h4" Class="ma-8">TaskCategories</MudText>
+
+<MudTable Items="@taskCategories" Class="ma-8">
+    <ColGroup>
+        <col style="width:50px;" />
+        <col />
+        <col style="width:100px;" />
+    </ColGroup>
+    <ToolBarContent>
+        <MudButton StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Primary" OnClick="AddTaskCategory">Add</MudButton>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Name</MudTh>
+        <MudTh>Tasks</MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.Id</MudTd>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Tasks">@string.Join(", ", context.Tasks)</MudTd>
+        <MudTd>
+            <MudIconButton Icon="@Icons.Material.Filled.Edit" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small" OnClick="() => EditTaskCategory(context.Id)"/>
+            <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small" OnClick="() => DeleteTaskCategory(context.Id)"/>
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable>
 
 @code {
+    private IEnumerable<TaskCategoryModel> taskCategories = new List<TaskCategoryModel>();
+    private string searchString = string.Empty;
 
+    private async Task ReloadData()
+    {
+        taskCategories = await TaskCategoryService.GetTaskCategories();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await ReloadData();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+    }
+
+    private async Task AddTaskCategory()
+    {
+        var parameters = new DialogParameters { };
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Large, FullWidth = true };
+
+        var dialog = await DialogService.ShowAsync<TaskCategoryDialog>("Add task category", parameters, options);
+        var result = await dialog.Result;
+
+        if (result.Canceled)
+            return;
+        
+        try
+        {
+            var taskCategoryModel = ((TaskCategoryDialog)dialog.Dialog).Model;
+            var createTaskCategoryModel = new CreateTaskCategoryModel()
+            {
+                Name = taskCategoryModel.Name
+            };
+            await TaskCategoryService.AddTaskCategory(createTaskCategoryModel);
+            await ReloadData();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+    }
+    
+    private async Task EditTaskCategory(Guid taskCategoryId)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("TaskCategoryId", taskCategoryId);
+
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Large, FullWidth = true };
+        var dialog = DialogService.Show<TaskCategoryDialog>("Edit task category", parameters, options);
+        var result = await dialog.Result;
+
+        if (result.Canceled)
+            return;
+
+        var model = ((TaskCategoryDialog)dialog.Dialog).Model;
+        var updateModel = new UpdateTaskCategoryModel()
+        {
+            Name = model.Name
+        };
+        
+        await TaskCategoryService.EditTaskCategory(taskCategoryId, updateModel);
+        await ReloadData();
+    }
+
+    private async Task DeleteTaskCategory(Guid taskCategoryId)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", "Do you really want to delete this task category? This process cannot be undone.");
+        parameters.Add("ButtonText", "Delete");
+        parameters.Add("Color", Color.Error);
+
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+
+        var dialog = await DialogService.ShowAsync<ConfirmationDialog>("Delete task category", parameters, options);
+        var result = await dialog.Result;
+
+        if (result.Canceled)
+            return;
+        
+        await TaskCategoryService.DeleteTaskCategory(taskCategoryId);
+        await ReloadData();
+    }
 }

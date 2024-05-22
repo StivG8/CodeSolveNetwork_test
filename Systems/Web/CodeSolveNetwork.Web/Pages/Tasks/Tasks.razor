@@ -1,5 +1,149 @@
-﻿<h3>Tasks</h3>
+﻿@page "/tasks"
+@using CodeSolveNetwork.Web.Pages.Tasks.Services
+@using CodeSolveNetwork.Web.Pages.Tasks.Models
+@using CodeSolveNetwork.Web.Components
+@using Microsoft.AspNetCore.Authorization
+@inject ITaskService TaskService
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+
+@attribute [Authorize]
+@layout MainLayout
+
+<PageTitle>Tasks</PageTitle>
+
+<MudText Typo="Typo.h4" Class="ma-8">Tasks</MudText>
+
+<MudTable Items="@tasks" Class="ma-8">
+    <ColGroup>
+        <col style="width:50px;" />
+        <col />
+        <col />
+        <col />
+        <col />
+        <col style="width:100px;" />
+    </ColGroup>
+    <ToolBarContent>
+        <MudButton StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Primary" OnClick="AddTask">Add</MudButton>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Title</MudTh>
+        <MudTh>ProgrammingLanguage</MudTh>
+        <MudTh>Category</MudTh>
+        <MudTh>Description</MudTh>
+        <MudTh>Solution</MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.Id</MudTd>
+        <MudTd DataLabel="Title">@context.Title</MudTd>
+        <MudTd DataLabel="ProgrammingLanguage">@context.ProgrammingLanguage</MudTd>
+        <MudTd DataLabel="Category">@context.Category</MudTd>
+        <MudTd DataLabel="Description">@context.Description</MudTd>
+        <MudTd DataLabel="Solution">@string.Join(", ", context.Solutions)</MudTd>
+        <MudTd>
+            <MudIconButton Icon="@Icons.Material.Filled.Edit" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small" OnClick="() => EditTask(context.Id)" />
+            <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small" OnClick="() => DeleteTask(context.Id)" />
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable>
 
 @code {
+    private IEnumerable<TaskModel> tasks = new List<TaskModel>();
+    private string searchString = string.Empty;
 
+    private async Task ReloadData()
+    {
+        tasks = await TaskService.GetTasks();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await ReloadData();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+    }
+
+    private async Task AddTask()
+    {
+        var parameters = new DialogParameters { };
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Large, FullWidth = true };
+
+        var dialog = await DialogService.ShowAsync<TaskDialog>("Add task", parameters, options);
+        var result = await dialog.Result;
+
+        if (result.Canceled)
+            return;
+        
+        try
+        {
+            var taskModel = ((TaskDialog)dialog.Dialog).Model;
+            var createTaskModel = new CreateTaskModel()
+            {
+                ProgrammingLanguageId = taskModel.ProgrammingLanguageId,
+                CategoryId = taskModel.CategoryId,
+                Description = taskModel.Description,
+                Title = taskModel.Title
+            };
+            await TaskService.AddTask(createTaskModel);
+            await ReloadData();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+    }
+    
+    private async Task EditTask(Guid taskId)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("TaskId", taskId);
+
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Large, FullWidth = true };
+        var dialog = DialogService.Show<TaskDialog>("Edit task", parameters, options);
+        var result = await dialog.Result;
+
+        if (result.Canceled)
+            return;
+
+        var model = ((TaskDialog)dialog.Dialog).Model;
+        var updateModel = new UpdateTaskModel()
+        {
+            Description = model.Description,
+            Title = model.Title
+        };
+        
+        await TaskService.EditTask(taskId, updateModel);
+        await ReloadData();
+    }
+
+    private async Task DeleteTask(Guid taskId)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("ContentText", "Do you really want to delete this task? This process cannot be undone.");
+        parameters.Add("ButtonText", "Delete");
+        parameters.Add("Color", Color.Error);
+
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+
+        var dialog = await DialogService.ShowAsync<ConfirmationDialog>("Delete task", parameters, options);
+        var result = await dialog.Result;
+
+        if (result.Canceled)
+            return;
+        
+        await TaskService.DeleteTask(taskId);
+        await ReloadData();
+    }
 }

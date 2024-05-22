@@ -9,7 +9,10 @@ namespace CodeSolveNetwork.Services.Tasks
     public class TaskModel
     {
         public Guid Id { get; set; }
+        public Guid ProgrammingLanguageId { get; set; }
         public string ProgrammingLanguage { get; set; }
+
+        public Guid CategoryId { get; set; }
         public string Category { get; set; }
 
         public string Title { get; set; }
@@ -26,7 +29,9 @@ namespace CodeSolveNetwork.Services.Tasks
             CreateMap<Task, TaskModel>()
                 .BeforeMap<TaskModelActions>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.ProgrammingLanguageId, opt => opt.Ignore())
                 .ForMember(dest => dest.ProgrammingLanguage, opt => opt.Ignore())
+                .ForMember(dest => dest.CategoryId, opt => opt.Ignore())
                 .ForMember(dest => dest.Category, opt => opt.Ignore())
                 .ForMember(dest => dest.Solutions, opt => opt.Ignore())
                 ;
@@ -48,7 +53,9 @@ namespace CodeSolveNetwork.Services.Tasks
                 var task = db.Tasks.Include(x => x.Solutions).FirstOrDefault(x => x.Id == source.Id);
 
                 destination.Id = task.Uid;
+                destination.ProgrammingLanguageId = task.Language.Uid;
                 destination.ProgrammingLanguage = task.Language.Name;
+                destination.CategoryId = task.Category.Uid;
                 destination.Category = task.Category.Name;
                 destination.Solutions = task.Solutions?.Select(x => x.Code);
             }

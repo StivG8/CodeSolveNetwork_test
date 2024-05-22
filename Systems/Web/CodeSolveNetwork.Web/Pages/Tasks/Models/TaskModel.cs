@@ -3,7 +3,10 @@
     public class TaskModel
     {
         public Guid Id { get; set; }
+        public Guid ProgrammingLanguageId { get; set; }
         public string ProgrammingLanguage { get; set; }
+
+        public Guid CategoryId { get; set; }
         public string Category { get; set; }
 
         public string Title { get; set; }
